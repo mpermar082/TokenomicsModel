@@ -6,12 +6,27 @@
 import { TokenomicsModel } from './tokenomicsmodel';
 import minimist from 'minimist';
 
+/**
+ * Command line arguments interface
+ */
 interface Args {
+    /**
+     * Enable verbose logging
+     */
     verbose?: boolean;
+    /**
+     * Input file path
+     */
     input?: string;
+    /**
+     * Output file path
+     */
     output?: string;
 }
 
+/**
+ * Parse command line arguments
+ */
 const args: Args = minimist(process.argv.slice(2), {
     boolean: ['verbose'],
     alias: {
@@ -21,6 +36,9 @@ const args: Args = minimist(process.argv.slice(2), {
     }
 });
 
+/**
+ * Main execution function
+ */
 async function main(): Promise<void> {
     try {
         const app = new TokenomicsModel({
@@ -45,6 +63,9 @@ async function main(): Promise<void> {
     }
 }
 
+/**
+ * Check if this is the main module and execute the main function
+ */
 if (require.main === module) {
     main();
 }
